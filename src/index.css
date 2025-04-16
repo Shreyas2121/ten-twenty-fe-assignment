@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Work Sans";
+  src: url("./assets/fonts/work-sans/WorkSans-Black.woff2") format("woff2"),
+    url("./assets/fonts/work-sans/WorkSans-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Work Sans";
+  src: url("./assets/fonts/work-sans/WorkSans-ExtraBold.woff2") format("woff2"),
+    url("./assets/fonts/work-sans/WorkSans-ExtraBold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Work Sans";
+  src: url("./assets/fonts/work-sans/WorkSans-Bold.woff2") format("woff2"),
+    url("./assets/fonts/work-sans/WorkSans-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Work Sans";
+  src: url("./assets/fonts/work-sans/WorkSans-ExtraLight.woff2") format("woff2"),
+    url("./assets/fonts/work-sans/WorkSans-ExtraLight.woff") format("woff");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Work Sans";
+  src: url("./assets/fonts/work-sans/WorkSans-Medium.woff2") format("woff2"),
+    url("./assets/fonts/work-sans/WorkSans-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Work Sans";
+  src: url("./assets/fonts/work-sans/WorkSans-Light.woff2") format("woff2"),
+    url("./assets/fonts/work-sans/WorkSans-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Work Sans";
+  src: url("./assets/fonts/work-sans/WorkSans-Regular.woff2") format("woff2"),
+    url("./assets/fonts/work-sans/WorkSans-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Work Sans";
+  src: url("./assets/fonts/work-sans/WorkSans-Thin.woff2") format("woff2"),
+    url("./assets/fonts/work-sans/WorkSans-Thin.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Work Sans";
+  src: url("./assets/fonts/work-sans/WorkSans-SemiBold.woff2") format("woff2"),
+    url("./assets/fonts/work-sans/WorkSans-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  html {
+    font-family: "Work Sans" !important;
+  }
+}
+
+.swiper {
+  padding: 0 132px !important;
+  overflow: visible !important;
+}
+
+.swiper-slide {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center center;
+}
+
+.swiper-slide-next {
+  transform: translateX(40%) scale(0.9);
+  rotate: 9.5deg;
+  opacity: 0.7;
+  z-index: 1;
+}
+
+.swiper-slide-prev {
+  rotate: -9.5deg;
+  transform: translateX(-40%) scale(0.9);
+  opacity: 0.7;
+  z-index: 1;
+}
+
+.swiper-slide-active {
+  transform: scale(1) !important;
+  opacity: 1 !important;
+  z-index: 2;
+}
