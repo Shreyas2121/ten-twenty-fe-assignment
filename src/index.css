@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
 @font-face {
   font-family: "Work Sans";
   src: url("./assets/fonts/work-sans/WorkSans-Black.woff2") format("woff2"),

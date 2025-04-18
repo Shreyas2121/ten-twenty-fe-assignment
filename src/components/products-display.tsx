@@ -4,9 +4,9 @@ import { A11y } from "swiper/modules";
 import "swiper/css";
 import { productsData } from "../constants";
 
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence, Variants } from "motion/react";
 
-const textItemVariants = {
+const textItemVariants: Variants = {
   initial: {
     y: 20,
     opacity: 0,
@@ -63,7 +63,7 @@ const ProductsDisplay = () => {
           <SwiperSlide key={product.id}>
             <div className="w-full h-full transform transition-all duration-300 ">
               <img
-                className="block w-full h-64 md:h-80 object-cover rounded-lg shadow-lg"
+                className="block w-full h-64 md:h-[500px] object-cover rounded-lg shadow-lg"
                 src={product.image}
                 alt="Product Image"
               />
@@ -71,7 +71,7 @@ const ProductsDisplay = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="text-center mt-8 h-16 relative animated-text-container">
+      <div className="text-center mt-10 h-16 relative animated-text-container">
         <AnimatePresence initial={false} mode="wait">
           {currentSlide && (
             <motion.div
@@ -97,11 +97,14 @@ const ProductsDisplay = () => {
             >
               <motion.h3
                 variants={textItemVariants}
-                className="font-semibold text-xl mb-1"
+                className="mb-1 text-4xl tracking-[-1px] leading-[40px] md:leading[60px] font-normal md:font-medium md:text-2xl"
               >
                 {currentSlide.title}
               </motion.h3>
-              <motion.p variants={textItemVariants} className="text-gray-500">
+              <motion.p
+                variants={textItemVariants}
+                className="text-[#7A7777] text-[16px] md:text-2xl"
+              >
                 {currentSlide.location}
               </motion.p>
             </motion.div>

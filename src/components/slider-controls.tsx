@@ -11,6 +11,8 @@ const SliderControls = () => {
   const dimensions = useElementSize(containerRef);
   const { currentImageIndex, nextImage } = useHeroImageSliderStore();
 
+  const wasManuallyStopped = useRef(false);
+
   const controls = useAnimationControls();
 
   const nextImageIndex = (currentImageIndex + 1) % heroImages.length;
@@ -20,19 +22,33 @@ const SliderControls = () => {
   }, [dimensions.width, dimensions.height]);
 
   useEffect(() => {
+    let isCancelled = false;
     if (perimeter > 0) {
+      wasManuallyStopped.current = false;
       controls.set({
         strokeDashoffset: perimeter,
       });
 
-      controls.start({
-        strokeDashoffset: 0,
-        transition: { duration: 6, ease: "linear" },
-      });
+      controls
+        .start({
+          strokeDashoffset: 0,
+          transition: { duration: 6, ease: "linear" },
+        })
+        .then(() => {
+          if (!wasManuallyStopped.current && !isCancelled) {
+            nextImage();
+          }
+        });
     }
-  }, [currentImageIndex, perimeter, controls]);
+
+    return () => {
+      isCancelled = true;
+      controls.stop();
+    };
+  }, [currentImageIndex, perimeter]);
 
   const handleNextClick = () => {
+    wasManuallyStopped.current = true;
     controls.stop();
     controls.set({ strokeDashoffset: perimeter });
     nextImage();
@@ -59,9 +75,6 @@ const SliderControls = () => {
           {perimeter > 0 && (
             <motion.rect
               animate={controls}
-              onAnimationComplete={() => {
-                nextImage();
-              }}
               x={0}
               y={0}
               width={dimensions.width}
@@ -78,12 +91,32 @@ const SliderControls = () => {
         </svg>
 
         <div className="z-[1] w-[77px] h-[77px] md:w-24 md:h-28 relative flex items-center justify-center overflow-hidden">
-          <img
+          <motion.img
+            key={heroImages[nextImageIndex]}
+            variants={{
+              hidden: {
+                clipPath: "inset(50% 0% 50% 0%)",
+                opacity: 0,
+              },
+              visible: {
+                clipPath: "inset(0% 0% 0% 0%)",
+                opacity: 1,
+                transition: {
+                  duration: 1.4,
+                  ease: [0.83, 0, 0.17, 1],
+                },
+              },
+            }}
+            initial="hidden"
+            animate="visible"
             src={heroImages[nextImageIndex]}
             alt="Hero BG Image"
             className="w-full h-full object-cover"
           />
-          <button onClick={handleNextClick} className="absolute text-white">
+          <button
+            onClick={() => handleNextClick()}
+            className="absolute text-white"
+          >
             Next
           </button>
         </div>

@@ -10,7 +10,7 @@ const Navbar = () => {
         {navLinks.map((link) => {
           return (
             <Link
-              className="text-black text-[14px] leading-[140%]"
+              className="text-black text-sm leading-[140%]"
               to={link.href}
               key={link.name}
             >
@@ -21,7 +21,7 @@ const Navbar = () => {
       </div>
       <div className="flex items-center justify-between w-full md:w-auto">
         <Button variant={"outline"}>
-          Contact Us <IconComponent iconName="right-arrow" className="ml-4" />
+          Contact us <IconComponent iconName="right-arrow" className="ml-4" />
         </Button>
         <Button className="flex md:hidden" variant={"primary"}>
           <IconComponent iconName="hamburger" />
